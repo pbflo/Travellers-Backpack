@@ -16,7 +16,7 @@ public class EffectMelonJuice extends FluidEffect
         super(FluidRegistry.getFluid("melonjuice"), 30);
     }
     
-    /*
+    
     @Override
     public void affectDrinker(FluidStack fluidStack, World world, Entity entity)
     {
@@ -28,5 +28,4 @@ public class EffectMelonJuice extends FluidEffect
             FluidEffectRegistry.WATER_EFFECT.affectDrinker(world, player);
         }
     }
-    */
 }
