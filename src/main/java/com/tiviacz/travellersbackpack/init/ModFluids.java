@@ -28,7 +28,7 @@ public class ModFluids
     {
         MILK = new FluidMilk("milk", MILK_STILL, MILK_FLOW);
         POTION = new FluidPotion("potion", POTION_STILL, POTION_FLOW);
-	MELONJUICE = new FluidPotion("melonjuice", MELONJUICE_STILL, MELONJUICE_FLOW);
+	MELONJUICE = new FluidMelonJuice("melonjuice", MELONJUICE_STILL, MELONJUICE_FLOW);
    //     mushroomStew = new FluidMushroomStew("mushroom_stew", MUSHROOM_STEW_STILL, MUSHROOM_STEW_FLOW, 0xcd8c6f);
 
         FluidRegistry.registerFluid(MILK);
