@@ -16,7 +16,7 @@ public class ModFluids
 	public static final ResourceLocation POTION_FLOW = new ResourceLocation(TravellersBackpack.MODID, "blocks/potion_flow");
 	
 	public static final ResourceLocation MELONJUICE_STILL = new ResourceLocation(TravellersBackpack.MODID, "blocks/melonjuice_still");
-	public static final ResourceLocation MEOLNJUICE_FLOW = new ResourceLocation(TravellersBackpack.MODID, "blocks/melonjuice_flow");
+	public static final ResourceLocation MELONJUICE_FLOW = new ResourceLocation(TravellersBackpack.MODID, "blocks/melonjuice_flow");
 //	public static final ResourceLocation MUSHROOM_STEW_STILL = new ResourceLocation(TravellersBackpack.MODID + ":blocks/mushroom_stew_still");
 //	public static final ResourceLocation MUSHROOM_STEW_FLOW = new ResourceLocation(TravellersBackpack.MODID + ":blocks/mushroom_stew_flow");
 	
@@ -29,12 +29,12 @@ public class ModFluids
     {
         MILK = new FluidMilk("milk", MILK_STILL, MILK_FLOW);
         POTION = new FluidPotion("potion", POTION_STILL, POTION_FLOW);
-		MELONJUICE = new FluidMelonJuice("melonjuice", MELONJUICE_STILL, MELONJUICE_FLOW);
+	MELONJUICE = new FluidMelonJuice("melonjuice", MELONJUICE_STILL, MELONJUICE_FLOW);
    //     mushroomStew = new FluidMushroomStew("mushroom_stew", MUSHROOM_STEW_STILL, MUSHROOM_STEW_FLOW, 0xcd8c6f);
 
         FluidRegistry.registerFluid(MILK);
         FluidRegistry.registerFluid(POTION);
-		FluidRegistry.registerFluid(MELONJUICE);
+	FluidRegistry.registerFluid(MELONJUICE);
    //     FluidRegistry.registerFluid(mushroomStew);
     }
 }
