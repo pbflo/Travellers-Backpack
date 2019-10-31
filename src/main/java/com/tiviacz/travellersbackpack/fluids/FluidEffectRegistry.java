@@ -26,7 +26,7 @@ public class FluidEffectRegistry
     public static FluidEffect LAVA_EFFECT;
     public static FluidEffect MILK_EFFECT;
     public static FluidEffect POTION_EFFECT;
-//  public static FluidEffect MELON_EFFECT;
+    public static FluidEffect MELON_EFFECT;
 //  public static FluidEffect SOUP_EFFECT;
 
     private static int effectIDCounter = 0;
@@ -38,7 +38,7 @@ public class FluidEffectRegistry
         LAVA_EFFECT = new EffectLava();
         MILK_EFFECT = new EffectMilk();
         POTION_EFFECT = new EffectPotion();
-//      MELON_EFFECT = new MelonJuiceEffect();
+        MELON_EFFECT = new MelonJuiceEffect();
 //      SOUP_EFFECT = new MushroomStewEffect();
     }
     
