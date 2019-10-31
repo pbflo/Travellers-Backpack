@@ -39,6 +39,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import net.minecraftforge.fluids.FluidTank;
+
 public class BlockTravellersBackpack extends BlockContainer
 {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -255,4 +257,58 @@ public class BlockTravellersBackpack extends BlockContainer
 	{
 		return new TileEntityTravellersBackpack();
 	}
+	
+	//Block Abilities
+	//Redstone Backpack
+	@Override
+	public int getWeakPower(IBlockState state, IBlockAccess baccess, BlockPos pos, EnumFacing side) {
+		String color = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos).getColor();
+		if(color="Redstone") {
+			return 15;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public boolean canProvidePower(IBlockState state)
+    	{
+        	String color = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos).getColor();
+		if(color="Redstone") {
+			return true;
+		} else {
+			return false;
+		}
+    	}
+
+    	@Override
+	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+		String color = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos).getColor();
+		if(color="Redstone") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//Cactus, Melon)
+	@Override
+	public void fillWithRain(World worldIn, BlockPos pos)
+    	{
+		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos);
+		String color = te.getColor();
+		if(color="Cactus" || color="Melon") {
+		
+    			Chunk chunk = worldIn.getChunkFromBlockCoords(pos);
+    		
+    			if (chunk.canSeeSky(pos))
+    			{
+    			
+       				if (worldIn.rand.nextInt(20) == 1)
+        			{
+            				System.out.println("It's raining!");
+        			}
+        		}
+		}
+    	}
 }
