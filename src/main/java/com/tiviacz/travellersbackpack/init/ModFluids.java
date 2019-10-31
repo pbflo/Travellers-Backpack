@@ -3,6 +3,7 @@ package com.tiviacz.travellersbackpack.init;
 import com.tiviacz.travellersbackpack.TravellersBackpack;
 import com.tiviacz.travellersbackpack.fluids.FluidMilk;
 import com.tiviacz.travellersbackpack.fluids.FluidPotion;
+import com.tiviacz.travellersbackpack.fluids.FluidMelonJuice;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
