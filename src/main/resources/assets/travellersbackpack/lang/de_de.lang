@@ -43,6 +43,7 @@ tile.sleeping_bag_bottom.name=Schlafsack
 //Fluids
 fluid.milk=Milch
 fluid.potion=Trank
+fluid.melonjuice=Melonensaft
 
 //Backpacks
 backpack.standard.name=Standard
