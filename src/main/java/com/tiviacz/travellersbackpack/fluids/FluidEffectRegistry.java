@@ -11,6 +11,7 @@ import com.tiviacz.travellersbackpack.fluids.effects.EffectLava;
 import com.tiviacz.travellersbackpack.fluids.effects.EffectMilk;
 import com.tiviacz.travellersbackpack.fluids.effects.EffectPotion;
 import com.tiviacz.travellersbackpack.fluids.effects.EffectWater;
+import com.tiviacz.travellersbackpack.fluids.effects.EffectMelonJuice;
 import com.tiviacz.travellersbackpack.util.LogHelper;
 
 import net.minecraft.entity.Entity;
@@ -38,7 +39,7 @@ public class FluidEffectRegistry
         LAVA_EFFECT = new EffectLava();
         MILK_EFFECT = new EffectMilk();
         POTION_EFFECT = new EffectPotion();
-        MELON_EFFECT = new MelonJuiceEffect();
+        MELON_EFFECT = new EffectMelonJuice();
 //      SOUP_EFFECT = new MushroomStewEffect();
     }
     

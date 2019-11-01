@@ -31,6 +31,7 @@ backpack.obtain.villager=Kann nur erhalten werden, indem er von einem Geistliche
 item.travellers_backpack.name=Rucksack des Reisenden
 item.backpack_tank.name=Rucksack Tank
 item.hose_nozzle.name=Schlauch Düse
+item.melonjuice_bottle.name=Melonensaft Flasche
 item.hose.name=Schlauch
 
 item.hose.suck=Aufnahme Modus

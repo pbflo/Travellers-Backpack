@@ -329,7 +329,7 @@ public class BlockTravellersBackpack extends BlockContainer
 		String color = te.getColor();
 		if(color.equals("Cactus"))
         {
-         	entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+         	entityIn.attackEntityFrom(DamageSource.CACTUS, 0.75F);
         }
     }
 	

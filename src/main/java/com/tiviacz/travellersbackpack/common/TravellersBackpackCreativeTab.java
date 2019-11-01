@@ -15,6 +15,7 @@ public class TravellersBackpackCreativeTab extends CreativeTabs
 		super(label);
 	}
 
+
 	@Override
 	public ItemStack getTabIconItem() 
 	{
@@ -29,6 +30,7 @@ public class TravellersBackpackCreativeTab extends CreativeTabs
 		list.add(new ItemStack(ModItems.BACKPACK_TANK));
 		list.add(new ItemStack(ModItems.HOSE_NOZZLE));
 		list.add(new ItemStack(ModItems.HOSE));
+		list.add(new ItemStack(ModItems.MELONJUICEBOTTLE));
 		
 		//Alphabetical order
 		addBackpack(list, 0);	//Standard

@@ -31,6 +31,7 @@ backpack.obtain.villager=Can only be acquired by buying it from a Priest or Libr
 item.travellers_backpack.name=Traveller's Backpack
 item.backpack_tank.name=Backpack Tank
 item.hose_nozzle.name=Hose nozzle
+item.melonjuice_bottle.name=Melon Juice Bottle
 item.hose.name=Hose
 
 item.hose.suck=Suck Mode

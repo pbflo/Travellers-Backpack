@@ -7,6 +7,7 @@ import com.tiviacz.travellersbackpack.items.ItemBase;
 import com.tiviacz.travellersbackpack.items.ItemHose;
 import com.tiviacz.travellersbackpack.items.ItemSleepingBag;
 import com.tiviacz.travellersbackpack.items.ItemTravellersBackpack;
+import com.tiviacz.travellersbackpack.items.ItemMelonJuiceBottle;
 
 import net.minecraft.item.Item;
 
@@ -20,4 +21,6 @@ public class ModItems
 	
 	public static final Item HOSE_NOZZLE = new ItemBase("hose_nozzle");
 	public static final Item HOSE = new ItemHose("hose");	
+
+	public static final Item MELONJUICEBOTTLE = new ItemMelonJuiceBottle("melonjuice_bottle", 1, 1, false);
 }
