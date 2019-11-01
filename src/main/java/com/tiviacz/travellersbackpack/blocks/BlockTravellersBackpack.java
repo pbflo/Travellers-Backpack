@@ -40,6 +40,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 
 public class BlockTravellersBackpack extends BlockContainer
 {
@@ -262,7 +263,7 @@ public class BlockTravellersBackpack extends BlockContainer
 	//Redstone Backpack
 	@Override
 	public int getWeakPower(IBlockState state, IBlockAccess baccess, BlockPos pos, EnumFacing side) {
-		String color = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos).getColor();
+		String color = (TileEntityTravellersBackpack)baccess.getTileEntity(pos).getColor();
 		if(color="Redstone") {
 			return 15;
 		} else {
@@ -270,7 +271,7 @@ public class BlockTravellersBackpack extends BlockContainer
 		}
 	}
 
-	@Override
+	/*@Override
 	public boolean canProvidePower(IBlockState state)
     	{
         	String color = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos).getColor();
@@ -279,11 +280,11 @@ public class BlockTravellersBackpack extends BlockContainer
 		} else {
 			return false;
 		}
-    	}
+    	}*/
 
     	@Override
 	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-		String color = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos).getColor();
+		String color = (TileEntityTravellersBackpack)world.getTileEntity(pos).getColor();
 		if(color="Redstone") {
 			return true;
 		} else {
@@ -291,7 +292,7 @@ public class BlockTravellersBackpack extends BlockContainer
 		}
 	}
 	
-	//Cactus, Melon)
+	//Cactus, Melon
 	@Override
 	public void fillWithRain(World worldIn, BlockPos pos)
     	{
@@ -302,13 +303,48 @@ public class BlockTravellersBackpack extends BlockContainer
     			Chunk chunk = worldIn.getChunkFromBlockCoords(pos);
     		
     			if (chunk.canSeeSky(pos))
-    			{
-    			
+    			{ 			
        				if (worldIn.rand.nextInt(20) == 1)
         			{
-            				System.out.println("It's raining!");
-        			}
+            				//System.out.println("It's raining!");
+					FluidTank lTank = te.getLeftTank();
+					FluidTank rTank = te.getRightTank();
+					Integer amount = 5;
+					
+					if (color="Cactus") {
+					  	FluidStack fluidS = new FluidStack(WATER, amount);
+					} else {
+						FluidStack fluidS = new FluidStack(ModFluids.MELONJUICE, amount);	
+					}
+					
+					lTank.fill(fluidS, true);
+					rTank.fill(fluidS, true);
+					
+	       			}
         		}
 		}
     	}
+	
+	//Bookshelf
+	@Override
+	public float getEnchantPowerBonus(World world, BlockPos pos) {
+		String color = (TileEntityTravellersBackpack)world.getTileEntity(pos).getColor();
+		if(color="Bookshelf") {
+			return 10f;
+		} else {
+			return 0f;
+		}
+	}
+	
+	//Glowstone
+	@Override
+	public float getLightLevel(World world, BlockPos pos) {
+		String color = (TileEntityTravellersBackpack)world.getTileEntity(pos).getColor();
+		if(color="Glowstone") {
+			return 1f;
+		} else {
+			return 0f;
+		}
+	}
+
 }
