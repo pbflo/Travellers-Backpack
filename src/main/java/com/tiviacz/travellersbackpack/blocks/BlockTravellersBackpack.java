@@ -48,6 +48,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import com.tiviacz.travellersbackpack.init.ModFluids;
+import net.minecraft.block.Block;
 
 public class BlockTravellersBackpack extends BlockContainer
 {
@@ -347,7 +348,7 @@ public class BlockTravellersBackpack extends BlockContainer
 	}
 	
 	//Glowstone
-    @Override
+    /*@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
     	System.out.println("triggered glow!");
@@ -358,6 +359,19 @@ public class BlockTravellersBackpack extends BlockContainer
 			b.setLightLevel(1f);
 		} else {
 			b.setLightLevel(0f);
+		}
+	}*/
+
+	@Override
+	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
+		String color = te.getColor();
+		if(color.equals("Glowstone")) {
+			System.out.println("Glow! ("+pos.getX()+"|"+pos.getY()+"|"+pos.getZ()+")");
+			return 14;
+		} else {
+			System.out.println("No Glow! ("+pos.getX()+"|"+pos.getY()+"|"+pos.getZ()+")");
+			return 0;
 		}
 	}
 

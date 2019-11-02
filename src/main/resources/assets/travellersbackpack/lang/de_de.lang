@@ -27,6 +27,9 @@ backpack.obtain.pigman=Kann nur erhalten werden, indem man einen Schweine-Rucksa
 backpack.obtain.deluxe=Kann in einer Festung gefunden werden
 backpack.obtain.villager=Kann nur erhalten werden, indem er von einem Geistlichen oder Bibliothekar gekauft wird
 
+melonjuice.bottle.obtain=Kann nur durch das Befüllen einer Flasche in einem Rucksack erhalten werden.
+melonjuice.bottle.effect=Eile (00:30)
+
 //Items
 item.travellers_backpack.name=Rucksack des Reisenden
 item.backpack_tank.name=Rucksack Tank

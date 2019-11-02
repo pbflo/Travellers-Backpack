@@ -27,6 +27,9 @@ backpack.obtain.pigman=Can only be acquired by wearing a Pig backpack and being 
 backpack.obtain.deluxe=Backpack obtainable in Strongholds
 backpack.obtain.villager=Can only be acquired by buying it from a Priest or Librarian villager
 
+melonjuice.bottle.obtain=Can only be acquired by filling a bottle in a backpack.
+melonjuice.bottle.effect=Haste (00:30)
+
 //Items
 item.travellers_backpack.name=Traveller's Backpack
 item.backpack_tank.name=Backpack Tank

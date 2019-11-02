@@ -2,6 +2,8 @@ package com.tiviacz.travellersbackpack.gui.container.slots;
 
 import com.tiviacz.travellersbackpack.gui.inventory.IInventoryTanks;
 import com.tiviacz.travellersbackpack.init.ModFluids;
+import com.tiviacz.travellersbackpack.init.ModItems;
+import com.tiviacz.travellersbackpack.items.ItemMelonJuiceBottle;
 import com.tiviacz.travellersbackpack.util.FluidUtils;
 import com.tiviacz.travellersbackpack.util.Reference;
 
@@ -40,6 +42,12 @@ public class SlotFluid extends Slot
 		{
 			return true;
 		}
+
+		if(stack.getItem() == ModItems.MELONJUICEBOTTLE || stack.getItem() == Items.GLASS_BOTTLE)
+		{
+			return true;
+		}
+
 		
 		return container != null ? true : false;
     }
@@ -52,16 +60,27 @@ public class SlotFluid extends Slot
 		{
 			return true;
 		}
+
+		if(stack.getItem() == ModItems.MELONJUICEBOTTLE || stack.getItem() == Items.GLASS_BOTTLE)
+		{
+			return true;
+		}
+
 		
 		return container != null ? true : false;
 	}
 	
 	public static boolean checkFluid(ItemStack stack, FluidTank leftTank, FluidTank rightTank)
 	{
-		if(stack.getItem() instanceof ItemPotion)
+		if(stack.getItem() instanceof ItemPotion || stack.getItem() instanceof ItemMelonJuiceBottle)
 		{
-			FluidStack fluidStack = new FluidStack(ModFluids.POTION, 250);
-			FluidUtils.setFluidStackNBT(stack, fluidStack);
+			FluidStack fluidStack;
+			if (stack.getItem() instanceof ItemPotion) {
+				fluidStack = new FluidStack(ModFluids.POTION, 250);
+				FluidUtils.setFluidStackNBT(stack, fluidStack);
+			} else {
+				fluidStack = new FluidStack(ModFluids.MELONJUICE, 250);
+			}
 			
 			if(leftTank.getFluid() != null || leftTank.getFluidAmount() != 0)
 			{

@@ -3,6 +3,8 @@ package com.tiviacz.travellersbackpack.gui.inventory;
 import com.tiviacz.travellersbackpack.init.ModFluids;
 import com.tiviacz.travellersbackpack.util.FluidUtils;
 
+import com.tiviacz.travellersbackpack.items.ItemMelonJuiceBottle;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -13,6 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import com.tiviacz.travellersbackpack.init.ModItems;
 
 public class InventoryActions 
 {
@@ -96,6 +99,63 @@ public class InventoryActions
         		}
         	}
         	//POTION PART ---
+
+        	//MELONJUICE BOTTLE PART ---
+			if(stackIn.getItem() instanceof ItemMelonJuiceBottle)
+        	{
+				int amount = 250;
+    			FluidStack fluidStack = new FluidStack(ModFluids.MELONJUICE, amount);
+
+				if(tank.getFluid() == null || tank.getFluid().areFluidStackTagsEqual(tank.getFluid(), fluidStack))
+        		{
+        			if(tank.getFluidAmount() + amount <= tank.getCapacity())
+        			{
+        				ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
+            			
+            			if(inventory.getStackInSlot(slotOut).isEmpty())
+            			{
+            				tank.fill(fluidStack, true);
+    	        			inventory.decrStackSize(slotIn, 1);
+    	        			inventory.setInventorySlotContents(slotOut, bottle);
+    	        			inventory.markTankDirty();
+    	        			
+    	        			if(player != null)
+    	                    {
+    	                        player.world.playSound(null, player.posX, player.posY + 0.5, player.posZ, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    	                    }
+    	        			
+    	        			return true;
+            			}
+            			else if(inventory.getStackInSlot(slotOut).getItem() == bottle.getItem())
+            			{
+            				int maxStackSize = inventory.getStackInSlot(slotOut).getMaxStackSize();
+            				
+            				if(bottle.getCount() + 1 > maxStackSize)
+            				{
+            					return false;
+            				}
+            				else
+            				{
+            					bottle.setCount(inventory.getStackInSlot(slotOut).getCount() + 1);
+            					
+            					tank.fill(fluidStack, true);
+                				inventory.decrStackSize(slotIn, 1);
+                				inventory.setInventorySlotContents(slotOut, bottle);
+                				inventory.markTankDirty();
+                				
+                				if(player != null)
+        	                    {
+        	                        player.world.playSound(null, player.posX, player.posY + 0.5, player.posZ, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        	                    }
+                				
+                				return true;
+            				}
+            			}
+        			}
+        		}
+				
+        	}
+        	//MELONJUICE BOTTLE PART ---
         	
         	IFluidHandlerItem container = FluidUtil.getFluidHandler(stackIn);
         	
@@ -212,6 +272,31 @@ public class InventoryActions
         		}
         	}
         	// --- POTION PART ---
+
+        	// --- MELONJUICE BOTTLE PART ---
+        	if(stackIn.getItem() == Items.GLASS_BOTTLE)
+        	{
+        		if(tank.getFluid().getFluid() == ModFluids.MELONJUICE && tank.getFluidAmount() >= 250)
+        		{
+        			ItemStack stackOut = new ItemStack(ModItems.MELONJUICEBOTTLE);
+        			
+        			if(inventory.getStackInSlot(slotOut).isEmpty())
+        			{
+        				tank.drain(250, true);
+        				inventory.decrStackSize(slotIn, 1);
+                		inventory.setInventorySlotContents(slotOut, stackOut);
+                		inventory.markTankDirty();
+                		
+                		if(player != null)
+	                    {
+	                        player.world.playSound(null, player.posX, player.posY + 0.5, player.posZ, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+	                    }
+                		
+                		return true;
+        			}
+        		}
+        	}
+        	// --- MELONJUICE BOTTLE PART ---
         	
         	else if(isFluidEqual(stackIn, tank))
         	{
