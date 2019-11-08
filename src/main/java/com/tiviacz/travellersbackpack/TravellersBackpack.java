@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 @Mod(modid = TravellersBackpack.MODID, name = TravellersBackpack.NAME, version = TravellersBackpack.VERSION, updateJSON = TravellersBackpack.UPDATE_JSON)
 public class TravellersBackpack

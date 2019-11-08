@@ -16,7 +16,7 @@ public class EffectMelonJuice extends FluidEffect
 {
     public EffectMelonJuice()
     {
-        super(FluidRegistry.getFluid("melonjuice"), 30);
+        super(FluidRegistry.getFluid("melonjuice"));
     }
     
     
@@ -25,9 +25,10 @@ public class EffectMelonJuice extends FluidEffect
     {
         if(entity instanceof EntityPlayer)
         {
+        	System.out.println("triggered");
             ((EntityPlayer)entity).clearActivePotions();
             EntityPlayer player = (EntityPlayer) entity;
-            player.addPotionEffect(new PotionEffect(MobEffects.HASTE, timeInTicks, 0));
+            player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 600, 0));
             FluidEffectRegistry.WATER_EFFECT.affectDrinker(new FluidStack(ModFluids.MELONJUICE, 5), world, player);
         }
     }

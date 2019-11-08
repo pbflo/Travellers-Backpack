@@ -37,6 +37,7 @@ public class Reference
     public static final String CATEGORY = "keys.travellersBackpack.category";
     public static final String INVENTORY = "keys.travellersBackpack.inventory";
     public static final String TOGGLE_TANK = "keys.travellersBackpack.toggle_tank";
+    public static final String TOGGLE_ABILITIES = "keys.travellersBackpack.toggle_abilities";
     
     public static String[] BACKPACK_NAMES = {
             "Standard",		//0

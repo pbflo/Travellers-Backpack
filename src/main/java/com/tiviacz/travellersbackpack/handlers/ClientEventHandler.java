@@ -32,6 +32,8 @@ import net.minecraftforge.fml.relauncher.Side;
 @EventBusSubscriber(modid = TravellersBackpack.MODID, value = Side.CLIENT)
 public class ClientEventHandler 
 {
+	public static boolean ACTIVATED_ABILITIES;
+		
 	@SubscribeEvent
     public static void onPlayerRender(RenderPlayerEvent.Pre event) 
 	{
@@ -55,11 +57,15 @@ public class ClientEventHandler
 	    ResourceLocation milk_flow = new ResourceLocation(TravellersBackpack.MODID, "blocks/milk_flow");
 	    ResourceLocation potion_still = new ResourceLocation(TravellersBackpack.MODID, "blocks/potion_still");
 	    ResourceLocation potion_flow = new ResourceLocation(TravellersBackpack.MODID, "blocks/potion_flow");
+	    ResourceLocation melonjuice_still = new ResourceLocation(TravellersBackpack.MODID, "blocks/melonjuice_still");
+	    ResourceLocation melonjuice_flow = new ResourceLocation(TravellersBackpack.MODID, "blocks/melonjuice_flow");
 	    
 	    event.getMap().registerSprite(milk_still);
 	    event.getMap().registerSprite(milk_flow);
 	    event.getMap().registerSprite(potion_still);
 	    event.getMap().registerSprite(potion_flow);
+	    event.getMap().registerSprite(melonjuice_still);
+	    event.getMap().registerSprite(melonjuice_flow);
 	    
 	    //Mushroom Stew
 	//    ResourceLocation mushroom_stew_still = new ResourceLocation(TravellersBackpack.MODID + ":blocks/mushroom_stew_still");
@@ -89,6 +95,7 @@ public class ClientEventHandler
     {
 		KeyBinding key1 = ClientProxy.openBackpack;
 		KeyBinding key2 = ClientProxy.toggleTank;
+		KeyBinding key3 = ClientProxy.toggleAbilities;
 		
 		if(key1.isPressed())
 		{
@@ -108,6 +115,20 @@ public class ClientEventHandler
 				}
 			}
 		}
+
+		if(key3.isPressed())
+		{
+			if(Minecraft.getMinecraft().player != null)
+			{
+				if (ACTIVATED_ABILITIES) {
+					ACTIVATED_ABILITIES=false;	
+				} else {
+					ACTIVATED_ABILITIES=true;
+				}
+				System.out.println(ACTIVATED_ABILITIES);
+			}
+		}
+
     }
 	
 	@SubscribeEvent

@@ -7,6 +7,7 @@ itemGroup.travellersbackpack=Traveller's Backpack
 keys.travellersBackpack.category=Traveller's Backpack
 keys.travellersBackpack.inventory=Backpack Inventory
 keys.travellersBackpack.toggle_tank=Toggle Hose Tank
+keys.travellersBackpack.toggle_abilities=Toggle Wearable Abilities
 
 //Actions
 actions.unequip_backpack.nobackpack=There's no backpack to unequip.

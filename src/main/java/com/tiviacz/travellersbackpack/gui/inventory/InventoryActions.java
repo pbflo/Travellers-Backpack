@@ -300,7 +300,7 @@ public class InventoryActions
         	
         	else if(isFluidEqual(stackIn, tank))
         	{
-        		if(tank.getFluid().getFluid() == ModFluids.POTION)
+        		if(tank.getFluid().getFluid() == ModFluids.POTION || tank.getFluid().getFluid() == ModFluids.MELONJUICE)
         		{
         			return false;
         		}

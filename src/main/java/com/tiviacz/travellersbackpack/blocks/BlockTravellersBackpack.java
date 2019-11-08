@@ -11,6 +11,7 @@ import com.tiviacz.travellersbackpack.tileentity.TileEntityTravellersBackpack;
 import com.tiviacz.travellersbackpack.util.BackpackUtils;
 import com.tiviacz.travellersbackpack.util.Bounds;
 import com.tiviacz.travellersbackpack.util.Reference;
+import com.tiviacz.travellersbackpack.handlers.ConfigHandler;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -49,6 +50,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import com.tiviacz.travellersbackpack.init.ModFluids;
 import net.minecraft.block.Block;
+import net.minecraft.world.World;
 
 public class BlockTravellersBackpack extends BlockContainer
 {
@@ -272,53 +274,68 @@ public class BlockTravellersBackpack extends BlockContainer
 	@Override
 	public int getWeakPower(IBlockState state, IBlockAccess baccess, BlockPos pos, EnumFacing side) 
 	{
-		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)baccess.getTileEntity(pos);
-		String color = te.getColor();
-		if(color.equals("Redstone")) {
-			return 15;
-		} else {
-			return 0;
-		}
+		if(ConfigHandler.enableBlockAbilities)
+        {
+			TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)baccess.getTileEntity(pos);
+			String color = te.getColor();
+			if(color.equals("Redstone") && !Excluded("Redstone")) {
+				return 15;
+			} else {
+				return 0;
+			}
+        } else {
+        	return 0;
+        }
 	}
 
     @Override
 	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) 
 	{
-		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
-		String color = te.getColor();
-		if(color.equals("Redstone")) {
-			return true;
-		} else {
-			return false;
-		}
+		if(ConfigHandler.enableBlockAbilities)
+        {
+			TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
+			String color = te.getColor();
+			if(color.equals("Redstone") && !Excluded("Redstone")) {
+				return true;
+			} else {
+				return false;
+			}
+        } else {
+        	return false;
+        }
 	}
 	
 	//Cactus, Melon
 	@Override
 	public void fillWithRain(World worldIn, BlockPos pos) 
 	{
-		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos);
-		String color = te.getColor();	
-		if (color.equals("Cactus") || color.equals("Melon")) {
-    		Chunk chunk = worldIn.getChunkFromBlockCoords(pos);
-    		
-    		if (chunk.canSeeSky(pos))
-    		{ 	
+		if(ConfigHandler.enableBlockAbilities)
+        {
+			TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos);
+			String color = te.getColor();	
+			if (color.equals("Cactus") || color.equals("Melon")) {
+				if (!Excluded("Cactus") || !Excluded("Melon")) {
+    				Chunk chunk = worldIn.getChunkFromBlockCoords(pos);
 
-				FluidTank lTank = te.getLeftTank();
-				FluidTank rTank = te.getRightTank();
-				Integer amount = 40;
-				FluidStack fluidS;
+    				if (chunk.canSeeSky(pos))
+    				{ 	
 
-				if (color.equals("Cactus")) {
-					fluidS = new FluidStack(FluidRegistry.WATER, amount);				  	
-				} else {
-					fluidS = new FluidStack(ModFluids.MELONJUICE, amount);
-				}
+						FluidTank lTank = te.getLeftTank();
+						FluidTank rTank = te.getRightTank();
+						Integer amount = 40;
+						FluidStack fluidS;
+
+						if (color.equals("Cactus")) {
+							fluidS = new FluidStack(FluidRegistry.WATER, amount);				  	
+						} else {
+							fluidS = new FluidStack(ModFluids.MELONJUICE, amount);
+						}
 					
-				lTank.fill(fluidS, true);				
-				rTank.fill(fluidS, true);
-        	}
+						lTank.fill(fluidS, true);				
+						rTank.fill(fluidS, true);
+        			}
+				}
+			}
 		}
     }
 
@@ -326,11 +343,14 @@ public class BlockTravellersBackpack extends BlockContainer
     @Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
-        TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos);
-		String color = te.getColor();
-		if(color.equals("Cactus"))
+    	if(ConfigHandler.enableBlockAbilities)
         {
-         	entityIn.attackEntityFrom(DamageSource.CACTUS, 0.75F);
+       		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos);
+			String color = te.getColor();
+			if(color.equals("Cactus") && !Excluded("Cactus"))
+       		{
+       		  	entityIn.attackEntityFrom(DamageSource.CACTUS, 0.75F);
+        	}
         }
     }
 	
@@ -338,41 +358,58 @@ public class BlockTravellersBackpack extends BlockContainer
 	@Override
 	public float getEnchantPowerBonus(World world, BlockPos pos) 
 	{
-		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
-		String color = te.getColor();
-		if(color.equals("Bookshelf")) {
-			return 10f;
-		} else {
-			return 0f;
-		}
+		if(ConfigHandler.enableBlockAbilities)
+        {
+			TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
+			String color = te.getColor();
+			if(color.equals("Bookshelf") && !Excluded(color)) {
+				return 10f;
+			} else {
+				return 0f;
+			}
+        } else {
+        	return 0f;
+        }
 	}
 	
 	//Glowstone
-    /*@Override
+    @Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-    	System.out.println("triggered glow!");
-		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)worldIn.getTileEntity(pos);
-		Block b = te.getBlockType();
-		String color = te.getColor();
-		if(color.equals("Glowstone")) {
-			b.setLightLevel(1f);
-		} else {
-			b.setLightLevel(0f);
-		}
-	}*/
+    	/*if (worldIn.isRemote) {
+			worldIn.markBlockForUpdate(pos);
+		}*/
+		System.out.println("CALLED");
+		worldIn.checkLight(pos);
+	}
 
 	@Override
 	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-		TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
-		String color = te.getColor();
-		if(color.equals("Glowstone")) {
-			System.out.println("Glow! ("+pos.getX()+"|"+pos.getY()+"|"+pos.getZ()+")");
-			return 14;
-		} else {
-			System.out.println("No Glow! ("+pos.getX()+"|"+pos.getY()+"|"+pos.getZ()+")");
-			return 0;
+		if(ConfigHandler.enableBlockAbilities)
+        {
+			TileEntityTravellersBackpack te = (TileEntityTravellersBackpack)world.getTileEntity(pos);
+			String color = te.getColor();
+			if(color.equals("Glowstone") && !Excluded("Glowstone")) {
+				System.out.println("Glow! ("+pos.getX()+"|"+pos.getY()+"|"+pos.getZ()+")");
+				this.setLightLevel(1.0f);
+				return 15;
+			} else {
+				System.out.println("No Glow! ("+pos.getX()+"|"+pos.getY()+"|"+pos.getZ()+")");
+				this.setLightLevel(0.0f);
+				return 0;
+			}
+        } else {
+        	return 0;
+        }
+		//worldIn.checkLight(pos);
+	}
+
+	public static boolean Excluded(String color) {
+		for (String inside : ConfigHandler.bannedAbilities) {
+			if (inside.equals(color))
+			return true;
 		}
+		return false;
 	}
 
 }

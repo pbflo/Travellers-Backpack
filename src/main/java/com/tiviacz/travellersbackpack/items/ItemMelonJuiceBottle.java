@@ -10,6 +10,7 @@ import com.tiviacz.travellersbackpack.init.ModFluids;
 import com.tiviacz.travellersbackpack.util.IHasModel;
 import com.tiviacz.travellersbackpack.fluids.effects.EffectMelonJuice;
 import com.tiviacz.travellersbackpack.fluids.FluidEffectRegistry;
+import com.tiviacz.travellersbackpack.handlers.ConfigHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,8 +66,13 @@ public class ItemMelonJuiceBottle extends ItemFood implements IHasModel
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-		tooltip.add(TextFormatting.BLUE + I18n.format("melonjuice.bottle.obtain"));
-		tooltip.add(TextFormatting.GOLD + I18n.format("melonjuice.bottle.effect"));
+    	if (ConfigHandler.obtainTips) {
+			tooltip.add(TextFormatting.BLUE + I18n.format("melonjuice.bottle.obtain"));
+			tooltip.add(TextFormatting.GOLD + I18n.format("melonjuice.bottle.effect"));
+    	} else {
+    		tooltip.add(TextFormatting.BLUE + I18n.format("melonjuice.bottle.effect"));	
+    	}
+		
     }
 
 }

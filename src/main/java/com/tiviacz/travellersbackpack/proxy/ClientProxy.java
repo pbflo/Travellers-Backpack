@@ -25,10 +25,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import com.tiviacz.travellersbackpack.handlers.ConfigHandler;
+
 public class ClientProxy extends CommonProxy
 {
 	public static KeyBinding openBackpack = new KeyBinding(Reference.INVENTORY, Keyboard.KEY_B, Reference.CATEGORY);
 	public static KeyBinding toggleTank = new KeyBinding(Reference.TOGGLE_TANK, Keyboard.KEY_N, Reference.CATEGORY);
+	public static KeyBinding toggleAbilities = new KeyBinding(Reference.TOGGLE_ABILITIES, Keyboard.KEY_M, Reference.CATEGORY);
 	
 	@Override
     public void preInit(FMLPreInitializationEvent event)
@@ -62,6 +65,9 @@ public class ClientProxy extends CommonProxy
     {
     	ClientRegistry.registerKeyBinding(openBackpack);
     	ClientRegistry.registerKeyBinding(toggleTank);
+    	if (ConfigHandler.enableAbilityActivation) {
+    	ClientRegistry.registerKeyBinding(toggleAbilities);
+    	}
     }
     
     public void registerTESR()

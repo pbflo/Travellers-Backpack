@@ -41,4 +41,19 @@ public class ConfigHandler
 	
 	@Comment("Enables button in backpack gui, which allows to empty tank")
 	public static boolean enableEmptyTankButton = true;
+
+	@Comment("Enables the abilities of the backpack when placed on the ground")
+	public static boolean enableBlockAbilities = true;
+
+	@Comment("Enables the abilities of the backpack when worn")
+	public static boolean enableWornAbilities = true;
+
+	@Comment("Enables the keybinding for turning of the abilities when worn")
+	public static boolean enableAbilityActivation = true;
+
+	@Comment({"A list of all banned Abilities. No ability in this list will be used.","(Name of the Backpack with the effect; Block and Worn Abilities possible)"})
+	public static String[] bannedAbilities = {"Redstone","Cactus"};
+
+	@Comment({"A list of all undeactivateable Abilities. No ability in this list can be deactivated with the Key.","(Name of the Backpack with the effect; Only Worn Abilities possible)"})
+	public static String[] undeactivateableAbilities = {"Slime"};
 }

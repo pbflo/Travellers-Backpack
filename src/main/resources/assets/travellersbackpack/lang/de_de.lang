@@ -7,6 +7,7 @@ itemGroup.travellersbackpack=Rucksack des Reisenden
 keys.travellersBackpack.category=Rucksack des Reisenden
 keys.travellersBackpack.inventory=Rucksack Inventar
 keys.travellersBackpack.toggle_tank=Schlauch Tank wechseln
+keys.travellersBackpack.toggle_abilities=Tragbare Fähigkeiten aktivieren/deaktivieren
 
 //Actions
 actions.unequip_backpack.nobackpack=Kein Rucksack zum ausziehen vorhanden.

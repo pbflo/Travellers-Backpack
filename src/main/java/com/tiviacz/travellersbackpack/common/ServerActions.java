@@ -156,6 +156,8 @@ public class ServerActions
         	if(fluidStack.getFluid() == ModFluids.POTION && fluidStack.amount >= Reference.POTION)
         	{
         		done = FluidEffectRegistry.executeFluidEffectsForFluid(fluidStack, player, world);
+        	} else if (fluidStack.getFluid() == ModFluids.MELONJUICE && fluidStack.amount >= Reference.POTION) {
+        		done = FluidEffectRegistry.executeFluidEffectsForFluid(fluidStack, player, world);
         	}
         	else
         	{

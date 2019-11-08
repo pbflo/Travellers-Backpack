@@ -402,6 +402,12 @@ public class ItemHose extends ItemBase
 									playerIn.setActiveHand(EnumHand.MAIN_HAND);
 									return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 								}
+							} else if (tank.getFluid().getFluid() == ModFluids.MELONJUICE && tank.getFluidAmount() >= Reference.POTION) {
+								if(FluidEffectRegistry.hasFluidEffect(tank.getFluid().getFluid()))
+								{
+									playerIn.setActiveHand(EnumHand.MAIN_HAND);
+									return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+								}
 							}
 							else
 							{
@@ -441,7 +447,7 @@ public class ItemHose extends ItemBase
                 	{
                 		if(ServerActions.setFluidEffect(worldIn, player, tank))
                 		{
-                			if(tank.getFluid().getFluid() == ModFluids.POTION)
+                			if(tank.getFluid().getFluid() == ModFluids.POTION || tank.getFluid().getFluid() == ModFluids.MELONJUICE)
                 			{
                 				tank.drain(Reference.POTION, true);
                 			}
